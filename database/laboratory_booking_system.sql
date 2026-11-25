@@ -1,7 +1,3 @@
-CREATE DATABASE IF NOT EXISTS laboratory_booking_system CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-USE laboratory_booking_system;
-
 CREATE TABLE users (
  id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(120) NOT NULL, email VARCHAR(190) NOT NULL UNIQUE,
  password_hash VARCHAR(255) NOT NULL, role ENUM('admin','student') NOT NULL DEFAULT 'student',

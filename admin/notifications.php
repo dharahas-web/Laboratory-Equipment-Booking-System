@@ -1,0 +1,4 @@
+<?php
+require_once __DIR__.'/../includes/auth.php'; require_role('admin');
+$pdo->prepare("UPDATE notifications SET is_read=1 WHERE user_id=?")->execute([current_user()['id']]);$s=$pdo->prepare("SELECT * FROM notifications WHERE user_id=? ORDER BY created_at DESC");$s->execute([current_user()['id']]);$rows=$s->fetchAll();page_header('Notifications','admin');?>
+<div class="panel"><h2 class="section-title">Notifications</h2><?php foreach($rows as $r):?><p><?=e($r['message'])?> <small class="muted">· <?=e($r['created_at'])?></small></p><?php endforeach?><?php if(!$rows):?><div class="empty">No notifications yet.</div><?php endif?></div><?php page_footer();?>

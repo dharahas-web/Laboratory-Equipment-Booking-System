@@ -1,0 +1,4 @@
+<?php
+require_once __DIR__.'/../includes/auth.php'; require_role('admin');
+$rows=$pdo->query("SELECT u.id,u.name,u.email,u.is_active,s.student_id,s.department,s.course,s.year_of_study FROM users u JOIN students s ON s.user_id=u.id ORDER BY u.name")->fetchAll();page_header('Student Management','admin');?>
+<div class="panel"><h2 class="section-title">Registered students</h2><div class="table-responsive"><table class="table"><thead><tr><th>Student ID</th><th>Name</th><th>Email</th><th>Department</th><th>Course</th><th>Year</th><th>Account</th></tr></thead><tbody><?php foreach($rows as $r):?><tr><td><?=e($r['student_id'])?></td><td><?=e($r['name'])?></td><td><?=e($r['email'])?></td><td><?=e($r['department'])?></td><td><?=e($r['course'])?></td><td><?=e($r['year_of_study'])?></td><td><?=$r['is_active']?'Active':'Inactive'?></td></tr><?php endforeach?></tbody></table></div></div><?php page_footer();?>
